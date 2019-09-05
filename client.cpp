@@ -8,14 +8,40 @@
 
 using namespace std;
 
+char *socket_path = (char *)"/tmp/db.tuple.sock";
+
 int main(int argc, char** argv) {
-	
+
 	string cmd = "";
-	
+
 	while (cmd != "quit") {
 		cout << ">";
 		cin >> cmd;
+		if (cmd == "connect"){
+
+		}
+		else if (cmd == "disconnect"){
+
+		}
+		else if (cmd == "insert"){
+
+		}
+		else if (cmd == "get"){
+
+		}
+		else if (cmd == "peek"){
+
+		}
+		else if (cmd == "update"){
+
+		}
+		else if (cmd == "delete"){
+
+		}
+		else if (cmd == "list"){
+
+		}
 	}
 
-	return 0;	
+	return 0;
 }

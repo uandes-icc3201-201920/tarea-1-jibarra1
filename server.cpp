@@ -3,17 +3,24 @@
 #include <unistd.h>
 #include <sys/socket.h>
 #include <sys/un.h>
+#include <cstdlib>
+#include <ctime>
 #include "util.h"
 
 using namespace std;
 
+char *socket_path = (char *)"/tmp/db.tuple.sock";
+
 // Almacenamiento KV
 KVStore db;
+
+// contador global
+int count = rand() % 10000 + 1000;
 
 int main(int argc, char** argv) {
 
 	int sflag = 0;
-	int opt;
+	int opt, fd;
 
 	// Procesar opciones de linea de comando
     while ((opt = getopt (argc, argv, "s:")) != -1) {
@@ -28,6 +35,15 @@ int main(int argc, char** argv) {
           }
     }
 
+		if (sflag == 1){
+			char *socket_path = argv[2];
+			cout << "\n Ruta: " << socket_path << endl;
+		}
+
+		if ( (fd = socket(AF_UNIX, SOCK_STREAM, 0)) == -1){
+			cout << "error de socket" << endl;
+			exit(-1);
+		}
 	// Uso elemental del almacenamiento KV:
 
 	// Creamos un arreglo de bytes a mano
